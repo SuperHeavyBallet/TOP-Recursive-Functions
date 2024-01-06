@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-fibonacciSequenceRecursively(20);
 
 function fibonacciSequence(n)
 {
@@ -53,6 +52,50 @@ function fibonacciSequenceRecursively(n)
             recursive(n);
         }
     }
+
+}
+
+const unsortedArray = ([105, 79, 100, 110]);
+const sortedArray = mergeSort(unsortedArray);
+
+console.log("Unsorted: ", unsortedArray);
+console.log("Sorted: ", sortedArray);
+
+
+function mergeSort(arr)
+{
+    if (arr.length <=1)
+    {
+        return arr; //Already sorted or empty array
+    }
+
+    const midpoint = Math.floor(arr.length /2);
+    const leftHalf = arr.slice(0, midpoint);
+    const rightHalf = arr.slice(midpoint);
+
+    const sortedLeft = mergeSort(leftHalf);
+    const sortedRight = mergeSort(rightHalf);
+
+    const result = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+
+    while (leftIndex < sortedLeft.length && rightIndex <sortedRight.length)
+    {
+        if (sortedLeft[leftIndex] < sortedRight[rightIndex])
+        {
+            result.push(sortedLeft[leftIndex]);
+            leftIndex++;
+
+        }
+        else{
+            result.push(sortedRight[rightIndex]);
+            rightIndex++;
+        } 
+
+    }
+
+    return result.concat(sortedLeft.slice(leftIndex).concat(sortedRight.slice(rightIndex)));
 
 }
 
