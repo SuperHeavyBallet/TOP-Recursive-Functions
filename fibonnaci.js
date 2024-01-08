@@ -93,11 +93,11 @@ function mergeSort(arr)
     return result.concat(sortedLeft.slice(leftIndex).concat(sortedRight.slice(rightIndex)));
 }
 
-const unsortedArray = ([105, 79, 100, 110]);
-const sortedArray = mergeSortRecurs(unsortedArray);
+//const unsortedArray = ([105, 79, 100, 110]);
+//const sortedArray = mergeSortRecurs(unsortedArray);
 
-console.log("Unsorted: ", unsortedArray);
-console.log("Sorted: ", sortedArray);
+// console.log("Unsorted: ", unsortedArray);
+// console.log("Sorted: ", sortedArray);
 
 
 function mergeSortRecurs(inputArray)
@@ -148,5 +148,78 @@ function mergeSortRecurs(inputArray)
     // Return the result array with the now sorted left and right half combined in order
 
 
+    
 
 }
+
+const unsortedArray = [105, 79, 100, 110, 24, 54, 2, 0, -2, 59, 899];
+const sortedArray = mergeSortRecurs(unsortedArray);
+
+console.log(`Original Array: ${unsortedArray}`);
+console.log(cartesianTreeSort(unsortedArray, "Full"));
+
+function cartesianTreeSort(inputArray, half)
+{
+
+    
+    console.log(`Input Array (${half}): ${inputArray}`);
+
+    if (inputArray.length > 1)
+    {
+
+    
+    const  smallestElementPosition =  (findSmallestElement(inputArray));
+
+    const root = inputArray[smallestElementPosition];
+    const leftHalf = inputArray.slice(0, smallestElementPosition);
+    const rightHalf = inputArray.slice(smallestElementPosition + 1);
+
+    console.log(`\x1b[37m`,`Root value: ${root}, at: ${smallestElementPosition} `);
+    
+
+    console.log('\x1b[36m%s\x1b[0m',`Left Half: ${leftHalf}`);
+    console.log('\x1b[33m%s\x1b[0m', `Right Half: ${rightHalf}`);
+
+
+    cartesianTreeSort(leftHalf, "Left");
+
+    
+    cartesianTreeSort(rightHalf, "Right");
+    
+
+    
+    
+    }
+
+
+    
+    
+
+}
+
+function findSmallestElement(inputArray)
+{
+    if (inputArray.length > 1)
+    {
+        let smallestElement = inputArray[0];
+        let smallestElementPos = 0;
+
+        for (let i = 0; i < inputArray.length; i++)
+        {
+            if (inputArray[i] < smallestElement)
+            {
+                smallestElement = inputArray[i];
+                smallestElementPos = i;
+            }
+        }
+
+        return smallestElementPos;
+    }
+    else
+    {
+        return inputArray;
+    }
+}
+
+
+    
