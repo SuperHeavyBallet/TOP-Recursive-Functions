@@ -155,8 +155,8 @@ function mergeSortRecurs(inputArray)
 const unsortedArray = [105, 79, 100, 110, 24, 54, 2, 0, -2, 59, 899];
 const sortedArray = mergeSortRecurs(unsortedArray);
 
-console.log(`Original Array: ${unsortedArray}`);
-console.log(cartesianTreeSort(unsortedArray, "Full"));
+//console.log(`Original Array: ${unsortedArray}`);
+//console.log(cartesianTreeSort(unsortedArray, "Full"));
 
 function cartesianTreeSort(inputArray, half)
 {
@@ -219,6 +219,57 @@ function findSmallestElement(inputArray)
     {
         return inputArray;
     }
+}
+
+
+const productList = [
+    {
+        ID: 0,
+        name: "Default",
+        price: 0,
+        available: "no"
+    },
+    {
+        ID: 1,
+        name: "TV",
+        price: 1999,
+        available: "yes"
+    },
+    {
+        ID: 2,
+        name: "VCR",
+        price: 1799,
+        available: "yes"
+    },
+    {
+        ID: 3,
+        name: "Washer",
+        price: 2199,
+        available: "yes"
+    },
+    {
+        ID: 4,
+        name: "Cleaner",
+        price: 2099,
+        available: "yes"
+    }
+]
+
+productFinder("Cleaner");
+
+function productFinder(inputName)
+{
+
+    for (let i = 0; i < productList.length; i++)
+    {
+        if (productList[i].name === inputName)
+        {
+            console.log(productList[i]);
+            break;
+        }
+        
+    }
+
 }
 
 
