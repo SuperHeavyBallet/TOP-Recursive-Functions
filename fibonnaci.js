@@ -100,60 +100,8 @@ function mergeSort(arr)
 // console.log("Sorted: ", sortedArray);
 
 
-function mergeSortRecurs(inputArray)
-{
-    if (inputArray.length <= 1)
-    {
-        return inputArray // Input array is 1 or 0, does not need further sorting
-    }
-
-    const midpoint = Math.floor(inputArray.length / 2); // Get halfway point of input array by dividing input array by 2
-    const leftHalf = inputArray.slice(0, midpoint); // Slice the input array from the first element to the mid point to create a left half
-    const rightHalf = inputArray.slice(midpoint); // Slice the input array from the midpoint to the last element to create a right half
-
-    const sortedLeft = mergeSortRecurs(leftHalf); // Repeats this process on the divided halfs
-    const sortedRight = mergeSortRecurs(rightHalf);
-
-    // The function will dive deeper until individual elements are created from the input array
-    // Eventually the array will be divided in half until only 1 element remains, at which point
-    // that element will be returned
-    // And then the recursive functions whill progressively step back up the ladder of process
-    // using the following sorting algorithm
-
-    const result = []; // Empty array to store each result
-    let leftIndex = 0; // An int to find the position within each sub array
-    let rightIndex = 0;
-
-    while (leftIndex < sortedLeft.length && rightIndex < sortedRight.length)
-    // Progressively move through each element in each sub array
-    {
-        if (sortedLeft[leftIndex] < sortedRight[rightIndex])
-        // If the value at leftIndex position (example 0) in the sorted left half array
-        // is less than the equivelant in the sorted right array
-        {
-            result.push(sortedLeft[leftIndex]);
-            // Push the sortedLeft at that position into the array first, since the number
-            // is smaller
-            leftIndex ++; // Increase the leftIndex position, since the current one has been placed
-        }
-        else // If the value at the sorted left half position is greater (or equal to) than the right half
-        {
-            result.push(sortedRight[rightIndex]);
-            // Push the sortedRight at that position into the array, since the number is smaller
-            rightIndex ++; // Increase the rightIndex position
-        }
-
-    }
-    return result.concat(sortedLeft.slice(leftIndex).concat(sortedRight.slice(rightIndex)));
-    // Return the result array with the now sorted left and right half combined in order
 
 
-    
-
-}
-
-const unsortedArray = [105, 79, 100, 110, 24, 54, 2, 0, -2, 59, 899];
-const sortedArray = mergeSortRecurs(unsortedArray);
 
 //console.log(`Original Array: ${unsortedArray}`);
 //console.log(cartesianTreeSort(unsortedArray, "Full"));
@@ -255,7 +203,7 @@ const productList = [
     }
 ]
 
-productFinder("Cleaner");
+//productFinder("Cleaner");
 
 function productFinder(inputName)
 {
@@ -269,6 +217,108 @@ function productFinder(inputName)
         }
         
     }
+
+}
+
+
+const unsortedArray = [105, 79, 100, 110, 24, 54, 2, 0, -2, 59, 899];
+const sortedArray = mergeSortRecurs(unsortedArray);
+
+binarySearch(79, sortedArray);
+
+
+function binarySearch(num, inputArray)
+{
+
+    console.log(inputArray);
+    const midpoint = Math.floor(inputArray.length / 2);
+
+    if (inputArray.length <= 0)
+    {
+        console.log("It's Not here!");
+        return
+    }
+    
+
+    if (inputArray[midpoint] === num)
+    {
+        console.log('Found it!');
+    }
+
+    else
+    {
+
+        if (inputArray[midpoint] < num)
+        {
+            // search right half
+
+            console.log("Look Right");
+            const splitArray = inputArray.slice(midpoint +1);
+
+            binarySearch(num, splitArray);
+        }
+        else if (inputArray[midpoint] > num)
+        {
+            //search left half
+            console.log("Look Left");
+            const splitArray = inputArray.slice(0, midpoint);
+
+            binarySearch(num, splitArray);
+        }
+        
+    }
+}
+
+
+function mergeSortRecurs(inputArray)
+{
+    if (inputArray.length <= 1)
+    {
+        return inputArray // Input array is 1 or 0, does not need further sorting
+    }
+
+    const midpoint = Math.floor(inputArray.length / 2); // Get halfway point of input array by dividing input array by 2
+    const leftHalf = inputArray.slice(0, midpoint); // Slice the input array from the first element to the mid point to create a left half
+    const rightHalf = inputArray.slice(midpoint); // Slice the input array from the midpoint to the last element to create a right half
+
+    const sortedLeft = mergeSortRecurs(leftHalf); // Repeats this process on the divided halfs
+    const sortedRight = mergeSortRecurs(rightHalf);
+
+    // The function will dive deeper until individual elements are created from the input array
+    // Eventually the array will be divided in half until only 1 element remains, at which point
+    // that element will be returned
+    // And then the recursive functions whill progressively step back up the ladder of process
+    // using the following sorting algorithm
+
+    const result = []; // Empty array to store each result
+    let leftIndex = 0; // An int to find the position within each sub array
+    let rightIndex = 0;
+
+    while (leftIndex < sortedLeft.length && rightIndex < sortedRight.length)
+    // Progressively move through each element in each sub array
+    {
+        if (sortedLeft[leftIndex] < sortedRight[rightIndex])
+        // If the value at leftIndex position (example 0) in the sorted left half array
+        // is less than the equivelant in the sorted right array
+        {
+            result.push(sortedLeft[leftIndex]);
+            // Push the sortedLeft at that position into the array first, since the number
+            // is smaller
+            leftIndex ++; // Increase the leftIndex position, since the current one has been placed
+        }
+        else // If the value at the sorted left half position is greater (or equal to) than the right half
+        {
+            result.push(sortedRight[rightIndex]);
+            // Push the sortedRight at that position into the array, since the number is smaller
+            rightIndex ++; // Increase the rightIndex position
+        }
+
+    }
+    return result.concat(sortedLeft.slice(leftIndex).concat(sortedRight.slice(rightIndex)));
+    // Return the result array with the now sorted left and right half combined in order
+
+
+    
 
 }
 
